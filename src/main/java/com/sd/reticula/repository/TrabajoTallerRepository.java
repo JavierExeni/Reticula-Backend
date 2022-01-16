@@ -11,5 +11,6 @@ public interface TrabajoTallerRepository extends JpaRepository<TrabajoTaller, In
     public List<TrabajoTaller> findAllByOrderByEstado();
     public List<TrabajoTaller> findAllByEstado(int estado);
     public List<TrabajoTaller> findAllByClienteOrderByEstado(Cliente cliente);
+    public List<TrabajoTaller> findAllByTipo(int estado);
 
 }

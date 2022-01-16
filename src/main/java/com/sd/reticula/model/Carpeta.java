@@ -15,6 +15,6 @@ public class Carpeta {
     private String nombre;
 
     @OneToOne
-    @JoinColumn(name = "cliente_id")
+    @JoinColumn(name = "carpeta")
     private Cliente cliente;
 }

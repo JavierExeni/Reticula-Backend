@@ -19,15 +19,15 @@ public class NotificacionService {
         return notificacionRepository.findAll();
     }
 
-    public void saveNotificacio(Notificacion objNotificacion){
-        if(objNotificacion == null){
-            throw new NullPointerException("el objeto a insertar no puede ser nulo");
+    public Notificacion saveNotification(Notificacion objNotificacion){
+        if(validatenotification(objNotificacion)){
+            return notificacionRepository.saveAndFlush(objNotificacion);
         }
-        try {
-            notificacionRepository.saveAndFlush(objNotificacion);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        return null;
+    }
+
+    private boolean validatenotification(Notificacion objNotification) {
+        return objNotification != null;
     }
 
 }

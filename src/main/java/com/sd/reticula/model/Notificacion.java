@@ -11,11 +11,12 @@ public class Notificacion {
 
     @Id
     @GeneratedValue(generator = "reticula.notificaciones_codigo_id_seq")
-    private int codigo_id;
+    private int id;
     private int tarea_id;
     private String mensaje;
     private boolean bleido;
 
     @ManyToOne
+    @JoinColumn(name="usuario_id")
     private Usuario usuario;
 }

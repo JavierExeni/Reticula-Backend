@@ -11,24 +11,20 @@ import java.util.List;
 public class AnexoService {
 
     @Autowired
-    AnexoRepository anexoRepository;
+    AnexoRepository annexedRepository;
 
     public List<Anexo> getAll(){
-        return anexoRepository.findAll();
+        return annexedRepository.findAll();
     }
 
-    public void saveAnexo(Anexo objAnexo) throws Exception {
-        if(objAnexo == null){
-            throw new NullPointerException("El objeto a guardar no puede ser nulo");
+    public Anexo saveAnnexed(Anexo objAnnexed) throws Exception {
+        if (validateAnnexed(objAnnexed)) {
+            return annexedRepository.saveAndFlush(objAnnexed);
         }
-        if(objAnexo.getTitulo().equals("")){
-            throw new Exception("El titulo del anexo no puede estar en blanco");
-        }
-        try{
-            anexoRepository.saveAndFlush(objAnexo);
-            System.out.println("Se guardo el anexo!!");
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        return null;
+    }
+
+    public boolean validateAnnexed(Anexo objAnnexed) {
+        return objAnnexed != null && !objAnnexed.getTitulo().equals("");
     }
 }

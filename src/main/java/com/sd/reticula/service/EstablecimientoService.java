@@ -8,45 +8,48 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EstablecimientoService {
 
     @Autowired
-    private EstablecimientoRepository establecimientoRepository;
+    private EstablecimientoRepository establishmentRepository;
 
     @Autowired
-    private ClienteRepository clienteRepository;
+    private ClienteRepository clientRepository;
 
     public List<Establecimiento> getAll(){
-        return establecimientoRepository.findAll();
+        return establishmentRepository.findAll();
+    }
+
+    public Establecimiento getById(int id){
+        Optional<Establecimiento> establishment = establishmentRepository.findById(id);
+        if (establishment.isPresent()) {
+            return establishment.get();
+        }
+        return null;
     }
 
     public List<Establecimiento> getRecordsByCliente(int cliente_id){
-        Cliente objAux = null;
-        List<Cliente> listaClientes = clienteRepository.findAll();
-        for (Cliente obj : listaClientes) {
-            if (obj.getId() == cliente_id) {
-                objAux = obj;
-                break;
-            }
+        Optional<Cliente> clientObj = clientRepository.findById(cliente_id);
+        if (clientObj.isPresent()) {
+            Cliente client = clientObj.get();
+            List<Establecimiento> EstablishmentList = establishmentRepository.findAllByCliente(client);
+            return EstablishmentList;
         }
-        List<Establecimiento> listaEstablecimientos = establecimientoRepository.findAllByCliente(objAux);
-        return listaEstablecimientos;
+        return null;
     }
 
-    public void saveEstablecimiento(Establecimiento objEstablecimiento){
-        if(objEstablecimiento.getCliente() == null){
-            throw new NullPointerException("Se esta intentando insertar un objeto nulo");
+    public Establecimiento saveEstablishment(Establecimiento objEstablishment){
+        if (validateEstablishment(objEstablishment)) {
+            return establishmentRepository.saveAndFlush(objEstablishment);
         }
-        if(objEstablecimiento.getDireccion().equals("")){
-            new Exception("La direccion no puede estar vacia");
-        }
-        try {
-            establecimientoRepository.saveAndFlush(objEstablecimiento);
-            System.out.println("se guardo el nuevo establecimiento");
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
+        return null;
+    }
+
+    public boolean validateEstablishment(Establecimiento objEstablishment) {
+        return objEstablishment.getCliente() != null && !objEstablishment.getDireccion().equals("") &&
+                !objEstablishment.getLatitud().equals("") && !objEstablishment.getLongitud().equals("");
     }
 }

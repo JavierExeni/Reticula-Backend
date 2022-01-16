@@ -28,8 +28,8 @@ public class Usuario {
     @JsonIgnore
     private Set<TrabajoTaller> listaTrabajoTaller;
 
-    @OneToMany(mappedBy = "usuario")
-    private Set<Notificacion> listaNotificacion;
+//    @OneToMany(mappedBy = "usuario")
+//    private Set<Notificacion> listaNotificacion;
 
     public void addTarea(Tarea tarea){
         if(listaTarea == null){

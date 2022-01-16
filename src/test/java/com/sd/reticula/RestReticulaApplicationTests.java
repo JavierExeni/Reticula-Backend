@@ -1,6 +1,6 @@
 package com.sd.reticula;
 
-import com.sd.reticula.model.Pfisica;
+import com.sd.reticula.model.Cliente;
 import com.sd.reticula.model.Tarea;
 import com.sd.reticula.model.TrabajoTaller;
 import com.sd.reticula.repository.ClienteRepository;
@@ -44,8 +44,8 @@ class RestReticulaApplicationTests {
 
 	@Test
 	void getTallerByCliente(){
-		List<Pfisica> listaClientes = clienteRepository.findAll();
-		List<TrabajoTaller> lista = trabajoTallerService.getAllByCliente(listaClientes.get(0).getLpersona_id());
+		List<Cliente> listaClientes = clienteRepository.findAll();
+		List<TrabajoTaller> lista = trabajoTallerService.getAllByCliente(listaClientes.get(0).getId());
 		for (TrabajoTaller obj :
 				lista) {
 			System.out.println(obj.toString());

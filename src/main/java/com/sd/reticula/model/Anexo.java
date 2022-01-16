@@ -11,7 +11,7 @@ public class Anexo {
 
     @Id
     @GeneratedValue(generator = "reticula.anexos_codigo_id_seq")
-    private int codigo_id;
+    private int id;
     private String titulo;
     private String extencion;
     private String mime_type;

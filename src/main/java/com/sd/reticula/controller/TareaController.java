@@ -25,7 +25,7 @@ public class TareaController {
         return taskService.getAll();
     }
 
-    @GetMapping("/{estado}")
+    @GetMapping("/estado/{estado}")
     public Object getAllbyEstado(@PathVariable String estado){
         List<Tarea> taskList = taskService.findAllByEstado(estado);
         if (taskList != null) {
@@ -38,13 +38,26 @@ public class TareaController {
         }
     }
 
-    @GetMapping("id/{codigo_id}")
+    @GetMapping("/tipo/{tipo}")
+    public Object getAllbyType(@PathVariable String tipo){
+        List<Tarea> taskList = taskService.findAllByType(tipo);
+        if (taskList != null) {
+            return taskList;
+        } else {
+            JSONObject obje = new JSONObject();
+            obje.put("res", "error");
+            obje.put("data", "Parámetros incorrectos");
+            return new ResponseEntity<>(obje, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/{codigo_id}")
     public Tarea getTareaById(@PathVariable int codigo_id){
         return taskService.findById(codigo_id);
     }
 
     // Recive los estados y tipos en texto
-    @GetMapping("/{estado}/{tipo}")
+    @GetMapping("/estado/{estado}/tipo/{tipo}")
     public Object getAllbyEstadoAndTipo(@PathVariable String estado, @PathVariable String tipo){
         List<Tarea> taskList = taskService.findAllByEstadoAndTipo(estado, tipo);
         if (taskList != null) {
@@ -57,12 +70,12 @@ public class TareaController {
         }
     }
 
-    @GetMapping("mantenimientos/cliente/{cliente_id}")
+    @GetMapping("/mantenimientos/cliente/{cliente_id}")
     public List<Tarea> getMantenimientosByCliente(@PathVariable int cliente_id){
         return taskService.getMantenimientosByCliente(cliente_id);
     }
 
-    @GetMapping("asistencias/cliente/{cliente_id}")
+    @GetMapping("/asistencias/cliente/{cliente_id}")
     public List<Tarea> getAsistenciasAndTareasByCliente(@PathVariable int cliente_id){
         return taskService.getAsistenciasAndTareasByCliente(cliente_id);
     }

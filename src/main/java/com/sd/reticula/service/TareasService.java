@@ -57,13 +57,19 @@ public class TareasService {
         }
     }
 
-    public Tarea findById(int codigo_id){
-        Tarea objTarea = tareaRepository.findById(codigo_id);
-        return objTarea;
+    public List<Tarea> findAllByType(String state) {
+        if (validateTypeTask(state)) {
+            int valueState = getValueTypeTask(state);
+            return tareaRepository.findAllByTipo(valueState);
+        } else {
+            return null;
+        }
     }
 
+    public Tarea findById(int codigo_id){ return tareaRepository.findById(codigo_id); }
+
     public List<Tarea> findAllByEstadoAndTipo(String state, String type) {
-        if (validateStateTask(state) && validateTypeTast(type)) {
+        if (validateStateTask(state) && validateTypeTask(type)) {
             List<Tarea> lista = findAllByEstado(state);
             if (lista != null) {
                 List<Tarea> listaFiltrada = lista.stream().filter(
@@ -76,16 +82,17 @@ public class TareasService {
     }
 
     private int getValueStateTask(String state) {
+        state = state.toLowerCase();
         switch (state) {
-            case "Pendiente":
+            case "pendiente":
                 return PENDIENTE;
-            case "Analisis":
+            case "analisis":
                 return ANALISIS;
-            case "Finalizado":
+            case "finalizado":
                 return FINALIZADO;
-            case "Entregado":
+            case "entregado":
                 return ENTREGADO;
-            case "Retrasado":
+            case "retrasado":
                 return RETRASADO;
             default:
                 return 0;
@@ -93,28 +100,33 @@ public class TareasService {
     }
 
     private boolean validateStateTask(String state) {
-        if (state.equals("Pendiente") || state.equals("Analisis") ||
-                state.equals("Finalizado") || state.equals("Entregado") || state.equals("Retrasado")) {
+        state = state.toLowerCase();
+        if (state.equals("pendiente") || state.equals("analisis") ||
+                state.equals("finalizado") || state.equals("entregado") ||
+                state.equals("retrasado")) {
             return true;
         }
         return false;
     }
 
-    private int getValueTypeTask(String task) {
-        switch (task) {
-            case "Asistencia":
+    private int getValueTypeTask(String type) {
+        type = type.toLowerCase();
+        switch (type) {
+            case "asistencia":
                 return this.ASISTENCIA;
-            case "Mantenimiento":
+            case "mantenimiento":
                 return this.MANTENIMIENTO;
-            case "Tarea":
+            case "tarea":
                 return this.TAREA;
             default:
                 return 0;
         }
     }
 
-    private boolean validateTypeTast(String task) {
-        if (task.equals("Asistencia") || task.equals("Mantenimiento") || task.equals("Tarea")) {
+    private boolean validateTypeTask(String type) {
+        type = type.toLowerCase();
+        if (type.equals("asistencia") || type.equals("mantenimiento")
+                || type.equals("tarea")) {
             return true;
         }
         return false;

@@ -50,7 +50,7 @@ public class Tarea {
                 ", carpeta='" + carpeta + '\'' +
                 ", fecha_registro='" + fecha_registro + '\'' +
                 ", fecha_limite='" + fecha_limite + '\'' +
-                ", cliente=" + cliente.getNombre() +
+                ", cliente=" + (cliente != null ? cliente.getNombre() : "") +
                 '}';
     }
 }

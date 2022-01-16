@@ -11,13 +11,13 @@ public class Establecimiento {
 
     @Id
     @GeneratedValue(generator = "reticula.establecimientos_codigo_id_seq")
-    private int codigo_id;
+    private int id;
     private String direccion;
     private String telefono;
-    private int longitud;
-    private int latitud;
+    private String longitud;
+    private String latitud;
 
     @ManyToOne
-    @JoinColumn(name = "pfisica_id")
+    @JoinColumn(name = "listaEstablecimiento")
     private Cliente cliente;
 }

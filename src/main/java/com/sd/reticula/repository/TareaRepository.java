@@ -10,6 +10,7 @@ public interface TareaRepository extends JpaRepository<Tarea, Integer> {
 
     public List<Tarea> findAllByOrderByEstado();
     public List<Tarea> findAllByEstado(int estado);
+    public List<Tarea> findAllByTipo(int estado);
     public List<Tarea> findAllByCliente(Cliente cliente);
     public Tarea findById(int codigo_id);
 }
