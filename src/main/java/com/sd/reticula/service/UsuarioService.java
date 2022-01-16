@@ -20,22 +20,18 @@ public class UsuarioService {
         return usuarioRepository.findAll();
     }
 
-    public Optional<Usuario> getUsuarioById(int id) throws NotFoundException {
+    public Optional<Usuario> getUserById(int id) throws NotFoundException {
         Optional<Usuario> usuario = usuarioRepository.findById(id);
         return usuario;
     }
 
     @Transactional
-    public void saveUsuario(Usuario objUsuario){
-        if(objUsuario == null){
-            throw new NullPointerException("El objeto a insertar no puede ser nulo");
-        }
-
+    public Usuario saveUser(Usuario objUsuario){
         try {
-            System.out.println("Guarda al usuario nuevo");
-            usuarioRepository.saveAndFlush(objUsuario);
+            return usuarioRepository.saveAndFlush(objUsuario);
         } catch (Exception ex){
             ex.printStackTrace();
+            return null;
         }
     }
 
@@ -43,8 +39,8 @@ public class UsuarioService {
         usuarioRepository.deleteById(id);
     }
 
-    public Usuario getUsusarioLogin(String userName, String password){
-        return usuarioRepository.findByUsernameAndSpassword(userName, password);
+    public Optional<Usuario> getLoginUser(Usuario usuario){
+        return usuarioRepository.findByUsernameAndSpassword(usuario.getUsername(), usuario.getSpassword());
     }
 
 }

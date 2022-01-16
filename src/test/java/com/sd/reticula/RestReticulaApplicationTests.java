@@ -3,25 +3,17 @@ package com.sd.reticula;
 import com.sd.reticula.model.Pfisica;
 import com.sd.reticula.model.Tarea;
 import com.sd.reticula.model.TrabajoTaller;
-import com.sd.reticula.model.Usuario;
-import com.sd.reticula.repository.PfisicaRepository;
+import com.sd.reticula.repository.ClienteRepository;
 import com.sd.reticula.repository.TareaRepository;
 import com.sd.reticula.repository.TrabajoTallerRepository;
 import com.sd.reticula.repository.UsuarioRepository;
 import com.sd.reticula.service.TareasService;
 import com.sd.reticula.service.TrabajoTallerService;
-import org.hibernate.tool.schema.internal.exec.ScriptTargetOutputToUrl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Sort;
-import org.springframework.test.annotation.Commit;
 
-import javax.transaction.Transactional;
-import java.awt.font.TransformAttribute;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Optional;
 
 @SpringBootTest
 class RestReticulaApplicationTests {
@@ -42,7 +34,7 @@ class RestReticulaApplicationTests {
 	private TrabajoTallerRepository trabajoTallerRepository;
 
 	@Autowired
-	private PfisicaRepository pfisicaRepository;
+	private ClienteRepository clienteRepository;
 
 	@Test
 	void contextLoads() {
@@ -52,7 +44,7 @@ class RestReticulaApplicationTests {
 
 	@Test
 	void getTallerByCliente(){
-		List<Pfisica> listaClientes = pfisicaRepository.findAll();
+		List<Pfisica> listaClientes = clienteRepository.findAll();
 		List<TrabajoTaller> lista = trabajoTallerService.getAllByCliente(listaClientes.get(0).getLpersona_id());
 		for (TrabajoTaller obj :
 				lista) {

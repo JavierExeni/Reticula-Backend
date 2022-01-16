@@ -16,5 +16,5 @@ public class Carpeta {
 
     @OneToOne
     @JoinColumn(name = "cliente_id")
-    private Pfisica cliente;
+    private Cliente cliente;
 }

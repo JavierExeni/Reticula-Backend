@@ -1,7 +1,6 @@
 package com.sd.reticula.controller;
 
 import com.sd.reticula.model.Establecimiento;
-import com.sd.reticula.model.Pfisica;
 import com.sd.reticula.service.EstablecimientoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -1,15 +1,11 @@
 package com.sd.reticula.controller;
 
-import com.sd.reticula.model.Pfisica;
 import com.sd.reticula.model.TrabajoTaller;
 import com.sd.reticula.service.TrabajoTallerService;
-import org.hibernate.tool.schema.internal.exec.ScriptTargetOutputToUrl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Calendar;
 import java.util.List;
 
 @CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST })

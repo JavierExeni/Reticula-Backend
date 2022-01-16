@@ -19,5 +19,5 @@ public class Establecimiento {
 
     @ManyToOne
     @JoinColumn(name = "pfisica_id")
-    private Pfisica cliente;
+    private Cliente cliente;
 }

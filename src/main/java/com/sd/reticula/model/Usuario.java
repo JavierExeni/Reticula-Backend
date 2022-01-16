@@ -9,40 +9,40 @@ import java.util.Set;
 
 @Data
 @Entity
-@Table(name="usuarios", schema = "reticula")
+@Table(name="usuario", schema = "reticula")
 public class Usuario {
 
     @Id
-    @GeneratedValue(generator = "reticula.usuarios_codigo_id_seq")
-    private int codigo_id;
-    private String scorreo;
+    @GeneratedValue(generator = "reticula.usuario_id_seq")
+    private int id;
+    private String correo;
     private String nombre;
     private String username;
     private String spassword;
 
     @OneToMany(mappedBy = "usuario")
     @JsonIgnore
-    private Set<Tarea> listaTareas;
+    private Set<Tarea> listaTarea;
 
     @OneToMany(mappedBy = "usuario")
     @JsonIgnore
-    private Set<TrabajoTaller> listaTrabajosTaller;
+    private Set<TrabajoTaller> listaTrabajoTaller;
 
     @OneToMany(mappedBy = "usuario")
-    private Set<Notificacion> listaNotificaciones;
+    private Set<Notificacion> listaNotificacion;
 
     public void addTarea(Tarea tarea){
-        if(listaTareas == null){
-            listaTareas = new HashSet<>();
+        if(listaTarea == null){
+            listaTarea = new HashSet<>();
         }
-        listaTareas.add(tarea);
+        listaTarea.add(tarea);
     }
 
     @Override
     public String toString() {
         return "Usuario{" +
-                "codigo_id=" + codigo_id +
-                ", scorreo='" + scorreo + '\'' +
+                "id=" + id +
+                ", correo='" + correo + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + spassword + '\'' +

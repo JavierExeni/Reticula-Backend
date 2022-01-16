@@ -1,9 +1,9 @@
 package com.sd.reticula.service;
 
 import com.sd.reticula.model.Establecimiento;
-import com.sd.reticula.model.Pfisica;
+import com.sd.reticula.model.Cliente;
 import com.sd.reticula.repository.EstablecimientoRepository;
-import com.sd.reticula.repository.PfisicaRepository;
+import com.sd.reticula.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,17 +16,17 @@ public class EstablecimientoService {
     private EstablecimientoRepository establecimientoRepository;
 
     @Autowired
-    private PfisicaRepository pfisicaRepository;
+    private ClienteRepository clienteRepository;
 
     public List<Establecimiento> getAll(){
         return establecimientoRepository.findAll();
     }
 
     public List<Establecimiento> getRecordsByCliente(int cliente_id){
-        Pfisica objAux = null;
-        List<Pfisica> listaClientes = pfisicaRepository.findAll();
-        for (Pfisica obj : listaClientes) {
-            if (obj.getLpersona_id() == cliente_id) {
+        Cliente objAux = null;
+        List<Cliente> listaClientes = clienteRepository.findAll();
+        for (Cliente obj : listaClientes) {
+            if (obj.getId() == cliente_id) {
                 objAux = obj;
                 break;
             }

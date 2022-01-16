@@ -1,7 +1,7 @@
 package com.sd.reticula.controller;
 
-import com.sd.reticula.model.Carpeta;
-import com.sd.reticula.service.CarpetaService;
+import com.sd.reticula.model.Cliente;
+import com.sd.reticula.service.ClienteService;
 import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,36 +12,37 @@ import java.util.List;
 
 @CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST })
 @RestController
-@RequestMapping("/carpetas")
-public class CarpetaController {
+@RequestMapping("/clientes")
+public class ClienteController {
 
     @Autowired
-    private CarpetaService carpetaService;
+    private ClienteService clienteService;
 
     @GetMapping
-    public List<Carpeta> getAll(){
-        return carpetaService.getAll();
+    public List<Cliente> getAll(){
+        return clienteService.getAll();
     }
 
     @PostMapping("/insert")
-    public Object crearCarpeta(@RequestBody Carpeta objCarpeta){
-        System.out.println(objCarpeta.toString());
+    public Object saveClient(@RequestBody Cliente objCliente){
+        System.out.println(objCliente.toString());
         JSONObject obje = new JSONObject();
         try {
-            Carpeta newFolder = carpetaService.createCarpeta(objCarpeta);
-            if (newFolder != null) {
+            Cliente newClient = clienteService.saveClient(objCliente);
+            if (newClient != null) {
                 obje.put("res", "success");
                 return new ResponseEntity<>(obje, HttpStatus.OK);
-            }else {
+            } else {
                 obje.put("res", "error");
                 obje.put("data", "Ocurrio un error al registrar los datos");
                 return new ResponseEntity<>(obje, HttpStatus.BAD_REQUEST);
             }
-        }catch (Exception e){
-            e.printStackTrace();
+        } catch (Exception ex){
+            ex.printStackTrace();
             obje.put("res", "error");
-            obje.put("data", e.getMessage());
+            obje.put("data", ex.getMessage());
             return new ResponseEntity<>(obje, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 }

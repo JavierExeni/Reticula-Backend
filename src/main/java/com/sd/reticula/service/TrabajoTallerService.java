@@ -1,19 +1,14 @@
 package com.sd.reticula.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.sd.reticula.model.Pfisica;
+import com.sd.reticula.model.Cliente;
 import com.sd.reticula.model.TrabajoTaller;
-import com.sd.reticula.repository.PfisicaRepository;
+import com.sd.reticula.repository.ClienteRepository;
 import com.sd.reticula.repository.TrabajoTallerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,7 +19,7 @@ public class TrabajoTallerService {
     TrabajoTallerRepository trabajoTallerRepository;
 
     @Autowired
-    PfisicaRepository pfisicaRepository;
+    ClienteRepository clienteRepository;
 
     public List<TrabajoTaller> getAll() {
         List<TrabajoTaller> lista = trabajoTallerRepository.findAllByOrderByEstado();
@@ -33,10 +28,10 @@ public class TrabajoTallerService {
     }
 
     public List<TrabajoTaller> getAllByCliente(int cliente_id) {
-        Pfisica objAux = null;
-        List<Pfisica> listaClientes = pfisicaRepository.findAll();
-        for (Pfisica obj : listaClientes) {
-            if (obj.getLpersona_id() == cliente_id) {
+        Cliente objAux = null;
+        List<Cliente> listaClientes = clienteRepository.findAll();
+        for (Cliente obj : listaClientes) {
+            if (obj.getId() == cliente_id) {
                 objAux = obj;
                 break;
             }

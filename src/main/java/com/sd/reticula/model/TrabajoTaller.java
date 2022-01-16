@@ -31,7 +31,7 @@ public class TrabajoTaller {
 
     @ManyToOne
     @JoinColumn(name = "cliente")
-    private Pfisica cliente;
+    private Cliente cliente;
 
     @ManyToOne
     @JoinColumn(name="usuario_id")
@@ -54,7 +54,7 @@ public class TrabajoTaller {
                 ", costo=" + costo +
                 ", tipo='" + tipo + '\'' +
                 ", fireBaseToken='" + fireBaseToken + '\'' +
-                ", cliente=" + cliente.getSpersonanm() +
+                ", cliente=" + cliente.getNombre() +
                 ", usuario=" + usuario.getUsername() +
                 '}';
     }
