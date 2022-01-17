@@ -1,6 +1,7 @@
 package com.sd.reticula.controller;
 
 import com.sd.reticula.model.Carpeta;
+import com.sd.reticula.model.TrabajoTaller;
 import com.sd.reticula.service.CarpetaService;
 import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,20 @@ public class CarpetaController {
     @GetMapping
     public List<Carpeta> getAll(){
         return carpetaService.getAll();
+    }
+
+    @GetMapping("/cliente/{id}")
+    public Object getById(@PathVariable int id){
+        JSONObject obje = new JSONObject();
+        Carpeta folder = carpetaService.getByClient(id);
+        if (folder != null) {
+            obje.put("res", "success");
+            return new ResponseEntity<>(obje, HttpStatus.OK);
+        } else {
+            obje.put("res", "error");
+            obje.put("data", "No existe una carpeta asociada al cliente");
+            return new ResponseEntity<>(obje, HttpStatus.OK);
+        }
     }
 
     @PostMapping("/insert")

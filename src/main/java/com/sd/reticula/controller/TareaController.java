@@ -25,6 +25,11 @@ public class TareaController {
         return taskService.getAll();
     }
 
+    @GetMapping("/no-analisis")
+    public List<Tarea> getAllWithOutAnalysis(){
+        return taskService.getAllWithOutAnalysis();
+    }
+
     @GetMapping("/estado/{estado}")
     public Object getAllbyEstado(@PathVariable String estado){
         List<Tarea> taskList = taskService.findAllByEstado(estado);

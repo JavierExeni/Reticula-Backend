@@ -50,8 +50,8 @@ public class UsuarioController {
                 return new ResponseEntity<>(obje, HttpStatus.OK);
             }else {
                 obje.put("res", "error");
-                obje.put("data", "Ocurrio un error al registrar los datos");
-                return new ResponseEntity<>(obje, HttpStatus.BAD_REQUEST);
+                obje.put("data", "Credenciales incorrectas");
+                return new ResponseEntity<>(obje, HttpStatus.OK);
             }
         } catch (Exception ex){
             ex.printStackTrace();

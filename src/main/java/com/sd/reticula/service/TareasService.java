@@ -43,6 +43,10 @@ public class TareasService {
     ClienteRepository clienteRepository;
 
     public List<Tarea> getAll() {
+        return tareaRepository.findAllByOrderByEstado();
+    }
+
+    public List<Tarea> getAllWithOutAnalysis() {
         List<Tarea> lista = tareaRepository.findAllByOrderByEstado();
         lista.removeIf(objTarea -> objTarea.getEstado() == ANALISIS);
         return lista;
