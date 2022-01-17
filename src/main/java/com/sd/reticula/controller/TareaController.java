@@ -102,5 +102,26 @@ public class TareaController {
             return new ResponseEntity<>(obje, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @DeleteMapping("/{id}")
+    public Object deleteTarea(@PathVariable int id){
+        JSONObject obje = new JSONObject();
+        try {
+            Boolean eliminado = taskService.deleteTask(id);
+            if (eliminado) {
+                obje.put("res", "success");
+                return new ResponseEntity<>(obje, HttpStatus.OK);
+            } else {
+                obje.put("res", "error");
+                obje.put("data", "Parámetros incorrectos");
+                return new ResponseEntity<>(obje, HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            obje.put("res", "error");
+            obje.put("data", e.getMessage());
+            return new ResponseEntity<>(obje, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
     

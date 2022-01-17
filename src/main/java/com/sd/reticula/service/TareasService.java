@@ -152,6 +152,16 @@ public class TareasService {
         }
     }
 
+    @Transactional
+    public Boolean deleteTask(int id) {
+        Tarea task = findById(id);
+        if (task != null) {
+            tareaRepository.delete(task);
+            return true;
+        }
+        return false;
+    }
+
     public List<Tarea> getMantenimientosByCliente(int cliente_id) {
         Cliente objAux = null;
         List<Cliente> listaClientes = clienteRepository.findAll();
