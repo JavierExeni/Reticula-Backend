@@ -30,6 +30,7 @@ public class CarpetaController {
         Carpeta folder = carpetaService.getByClient(id);
         if (folder != null) {
             obje.put("res", "success");
+            obje.put("data", folder);
             return new ResponseEntity<>(obje, HttpStatus.OK);
         } else {
             obje.put("res", "error");
