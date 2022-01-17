@@ -15,12 +15,19 @@ public class Anexo {
     private String titulo;
     private String path;
 
+//    @ManyToMany
+//    @JoinColumn(name = "tarea")
+//    private Tarea tarea;
+
+//    @ManyToMany
+//    @JoinColumn(name = "anexolist")
+//    private Carpeta carpeta;
+
     @ManyToOne
-    @JoinColumn(name = "tarea")
+    @JoinColumn(name="tarea_id")
     private Tarea tarea;
 
     @ManyToOne
-    @JoinColumn(name = "anexolist")
+    @JoinColumn(name="carpeta_id")
     private Carpeta carpeta;
-
 }

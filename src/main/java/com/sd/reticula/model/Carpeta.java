@@ -21,7 +21,7 @@ public class Carpeta {
     @JoinColumn(name = "carpeta")
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "carpeta")
-    @JsonIgnore
-    private Set<Anexo> listaAnexos;
+//    @ManyToMany(mappedBy = "carpeta")
+//    @JsonIgnore
+//    private Anexo anexo;
 }

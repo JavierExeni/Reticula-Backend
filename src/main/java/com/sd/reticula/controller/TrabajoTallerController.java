@@ -14,7 +14,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
 
-@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST })
+@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE })
 @RestController
 @RequestMapping("/taller")
 public class TrabajoTallerController {
@@ -59,6 +59,20 @@ public class TrabajoTallerController {
         TrabajoTaller objTrabajo = trabajoTallerService.getById(trabajo_id);
         if (objTrabajo != null) {
             return new ResponseEntity<>(objTrabajo, HttpStatus.OK);
+        } else {
+            obje.put("res", "error");
+            obje.put("data", "Parámetros incorrectos");
+            return new ResponseEntity<>(obje, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public Object deleteById(@PathVariable int id){
+        JSONObject obje = new JSONObject();
+        Boolean eliminado = trabajoTallerService.deleteById(id);
+        if (eliminado) {
+            obje.put("res", "success");
+            return new ResponseEntity<>(obje, HttpStatus.OK);
         } else {
             obje.put("res", "error");
             obje.put("data", "Parámetros incorrectos");

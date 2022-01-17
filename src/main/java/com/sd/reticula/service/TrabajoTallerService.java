@@ -71,6 +71,16 @@ public class TrabajoTallerService {
         return null;
     }
 
+    public Boolean deleteById(int id) {
+        Optional<TrabajoTaller> objTrabajo = trabajoTallerRepository.findById(id);
+        if (objTrabajo.isPresent()) {
+            TrabajoTaller trabajo = objTrabajo.get();
+            trabajoTallerRepository.delete(trabajo);
+            return true;
+        }
+        return false;
+    }
+
     public List<TrabajoTaller> getAllByEstado(String estado) {
         if (validateStateWork(estado)) {
             return trabajoTallerRepository.findAllByEstado(getValueStateWork(estado));

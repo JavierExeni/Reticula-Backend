@@ -172,7 +172,7 @@ public class TareasService {
             }
         }
         List<Tarea> lista = tareaRepository.findAllByCliente(objAux);
-        lista.removeIf(obj -> obj.getTipo() == 2 || obj.getTipo() == 0);
+        lista.removeIf(obj -> obj.getTipo() == ASISTENCIA || obj.getTipo() == TAREA);
         return lista;
     }
 
@@ -186,7 +186,7 @@ public class TareasService {
             }
         }
         List<Tarea> lista = tareaRepository.findAllByCliente(objAux);
-        lista.removeIf(obj -> obj.getTipo() == MANTENIMIENTO || obj.getTipo() == TAREA);
+        lista.removeIf(obj -> obj.getTipo() == MANTENIMIENTO);
         return lista;
     }
 

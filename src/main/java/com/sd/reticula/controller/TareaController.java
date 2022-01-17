@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST })
+@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE })
 @RestController
 @RequestMapping("/tareas")
 public class TareaController {
@@ -75,7 +75,7 @@ public class TareaController {
         return taskService.getMantenimientosByCliente(cliente_id);
     }
 
-    @GetMapping("/asistencias/cliente/{cliente_id}")
+    @GetMapping("/asistencias-tareas/cliente/{cliente_id}")
     public List<Tarea> getAsistenciasAndTareasByCliente(@PathVariable int cliente_id){
         return taskService.getAsistenciasAndTareasByCliente(cliente_id);
     }

@@ -34,9 +34,9 @@ public class Tarea {
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "tarea")
-    @JsonIgnore
-    private Set<Anexo> listaAnexos;
+//    @ManyToMany(mappedBy = "tarea")
+//    @JsonIgnore
+//    private Set<Anexo> listaAnexos;
 
     @Override
     public String toString() {
