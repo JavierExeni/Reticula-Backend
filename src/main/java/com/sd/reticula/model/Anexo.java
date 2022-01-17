@@ -13,8 +13,6 @@ public class Anexo {
     @GeneratedValue(generator = "reticula.anexos_codigo_id_seq")
     private int id;
     private String titulo;
-    private String extencion;
-    private String mime_type;
     private String path;
 
     @ManyToOne

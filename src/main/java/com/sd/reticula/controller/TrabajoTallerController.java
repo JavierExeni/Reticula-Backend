@@ -154,23 +154,27 @@ public class TrabajoTallerController {
     @Value("${file.upload-dir}")
     String FILE_DIRECTORY;
     @PostMapping("/uploadImage")
-//    @DateTimeFormat(pattern = "yyyy-mm-dd")
-//    @Temporal(TemporalType.DATE)
     public Object uploadImage(@RequestParam("File") MultipartFile file, @RequestParam("tallerId") int tallerId) {
-
-
-
-
-
         JSONObject obje = new JSONObject();
+
+        String path = new File(".").getAbsolutePath();
+        path = path.substring(0, path.length() - 1);
+        path = path + "files";
+        createFolder(path);
+
+        path = path + "/taller";
+        createFolder(path);
 
         try {
             TrabajoTaller objTrabajo = trabajoTallerService.getById(tallerId);
             if (objTrabajo != null) {
+                path = path + "/" + objTrabajo.getCliente().getId();
+                createFolder(path);
+
                 String relativePath = FILE_DIRECTORY + "/taller/" + objTrabajo.getCliente().getId() + "/" + file.getOriginalFilename();
                 String pathCompleto = new File(".").getAbsolutePath();
                 String ultimatePath = pathCompleto.substring(0, pathCompleto.length()-1) + relativePath;
-                System.out.println(ultimatePath);
+
                 objTrabajo.setImagen(relativePath);
                 File myFile = new File(ultimatePath);
                 myFile.createNewFile();
@@ -192,6 +196,13 @@ public class TrabajoTallerController {
             obje.put("res", "error");
             obje.put("data", ex.getMessage());
             return new ResponseEntity<>(obje, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    private void createFolder(String path) {
+        File f = new File(path);
+        if (!f.exists()){
+            f.mkdir();
         }
     }
 }
