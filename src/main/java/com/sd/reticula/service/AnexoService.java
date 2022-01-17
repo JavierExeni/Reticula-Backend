@@ -38,6 +38,6 @@ public class AnexoService {
     }
 
     public boolean validateAnnexed(Anexo objAnnexed) {
-        return objAnnexed != null && !objAnnexed.getTitulo().equals("");
+        return objAnnexed != null && !objAnnexed.getTitulo().equals("") && objAnnexed.getCarpeta() != null;
     }
 }

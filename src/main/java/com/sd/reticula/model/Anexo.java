@@ -21,4 +21,8 @@ public class Anexo {
     @JoinColumn(name = "tarea")
     private Tarea tarea;
 
+    @ManyToOne
+    @JoinColumn(name = "anexolist")
+    private Carpeta carpeta;
+
 }
