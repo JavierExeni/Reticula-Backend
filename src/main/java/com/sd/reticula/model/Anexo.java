@@ -18,7 +18,7 @@ public class Anexo {
     private String path;
 
     @ManyToOne
-    @JoinColumn(name = "tarea_id")
-    private Tarea tarea_id;
+    @JoinColumn(name = "tarea")
+    private Tarea tarea;
 
 }

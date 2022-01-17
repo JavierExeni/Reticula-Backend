@@ -22,7 +22,6 @@ public class Tarea {
     private String descripcion;
     private int tipo;
     private int estado;
-    private String carpeta;
     private Date fecha_registro;
     private Date fecha_proceso;
     private Date fecha_limite;
@@ -35,7 +34,7 @@ public class Tarea {
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "tarea_id")
+    @OneToMany(mappedBy = "tarea")
     @JsonIgnore
     private Set<Anexo> listaAnexos;
 
@@ -47,7 +46,6 @@ public class Tarea {
                 ", descripcion='" + descripcion + '\'' +
                 ", tipo='" + tipo + '\'' +
                 ", estado='" + estado + '\'' +
-                ", carpeta='" + carpeta + '\'' +
                 ", fecha_registro='" + fecha_registro + '\'' +
                 ", fecha_limite='" + fecha_limite + '\'' +
                 ", cliente=" + (cliente != null ? cliente.getNombre() : "") +

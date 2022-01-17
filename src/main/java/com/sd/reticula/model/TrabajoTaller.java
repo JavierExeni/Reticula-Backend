@@ -59,4 +59,11 @@ public class TrabajoTaller {
                 ", usuario=" + usuario.getUsername() +
                 '}';
     }
+
+//    @Transient
+//    public String getPhotosImagePath() {
+//        if (imagen == null || id == 0) return null;
+//
+//        return "files/taller/" + id + "/" + imagen;
+//    }
 }

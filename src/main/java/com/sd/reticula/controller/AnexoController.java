@@ -23,6 +23,26 @@ public class AnexoController {
         return annexedService.getAll();
     }
 
+    @GetMapping("/tarea/{tareaId}")
+    public Object getAll(@PathVariable int tareaId){
+        JSONObject obje = new JSONObject();
+        try {
+            List<Anexo> annexedList = annexedService.getByTaskId(tareaId);
+            if (annexedList != null) {
+                return new ResponseEntity<>(annexedList, HttpStatus.OK);
+            }else {
+                obje.put("res", "error");
+                obje.put("data", "Parámetros incorrectos");
+                return new ResponseEntity<>(obje, HttpStatus.BAD_REQUEST);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            obje.put("res", "error");
+            obje.put("data", e.getMessage());
+            return new ResponseEntity<>(obje, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @PostMapping("/insert")
     public Object saveAnexo(@RequestBody Anexo objAnnexed){
         System.out.println(objAnnexed.toString());

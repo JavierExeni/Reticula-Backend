@@ -1,28 +1,17 @@
 package com.sd.reticula.controller;
 
 import com.sd.reticula.model.TrabajoTaller;
-import com.sd.reticula.model.UploadFileResponse;
-import com.sd.reticula.service.FileStorageService;
 import com.sd.reticula.service.TrabajoTallerService;
 import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 @CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST })
@@ -32,8 +21,6 @@ public class TrabajoTallerController {
 
     @Autowired
     TrabajoTallerService trabajoTallerService;
-
-    private FileStorageService fileStorageService;
 
     @GetMapping
     public List<TrabajoTaller> getAll(){
@@ -171,22 +158,28 @@ public class TrabajoTallerController {
 //    @Temporal(TemporalType.DATE)
     public Object uploadImage(@RequestParam("File") MultipartFile file, @RequestParam("tallerId") int tallerId) {
 
-        String pathFile = FILE_DIRECTORY + "taller/";
+
+
+
+
         JSONObject obje = new JSONObject();
 
         try {
-            File myFile = new File(pathFile);
-            myFile.createNewFile();
-            FileOutputStream fos = new FileOutputStream(myFile);
-            fos.write(file.getBytes());
-            fos.close();
-
             TrabajoTaller objTrabajo = trabajoTallerService.getById(tallerId);
             if (objTrabajo != null) {
-                pathFile += objTrabajo.getCliente().getId() + file.getOriginalFilename();
-                System.out.println(pathFile);
-                objTrabajo.setImagen(pathFile);
+                String relativePath = FILE_DIRECTORY + "/taller/" + objTrabajo.getCliente().getId() + "/" + file.getOriginalFilename();
+                String pathCompleto = new File(".").getAbsolutePath();
+                String ultimatePath = pathCompleto.substring(0, pathCompleto.length()-1) + relativePath;
+                System.out.println(ultimatePath);
+                objTrabajo.setImagen(relativePath);
+                File myFile = new File(ultimatePath);
+                myFile.createNewFile();
+                FileOutputStream fos = new FileOutputStream(myFile);
+                fos.write(file.getBytes());
+                fos.close();
+
                 trabajoTallerService.saveTrabajoTaller(objTrabajo);
+
                 obje.put("res", "success");
                 return new ResponseEntity<>(obje, HttpStatus.OK);
             } else {
