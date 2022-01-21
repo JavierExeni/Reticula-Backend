@@ -15,7 +15,7 @@ import java.util.Set;
 public class Tarea {
 
     @Id
-    @GeneratedValue(generator = "reticula.tarea_id_seq")
+    @GeneratedValue(generator = "reticula.tareas_codigo_id_seq")
     @Column(name = "codigo_id")
     private int id;
     private String nombre;

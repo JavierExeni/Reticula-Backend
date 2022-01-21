@@ -13,7 +13,7 @@ import java.util.Set;
 public class Usuario {
 
     @Id
-    @GeneratedValue(generator = "reticula.usuario_id_seq")
+    @GeneratedValue(generator = "reticula.usuarios_codigo_id_seq")
     private int codigo_id;
     private String scorreo;
     private String nombre;

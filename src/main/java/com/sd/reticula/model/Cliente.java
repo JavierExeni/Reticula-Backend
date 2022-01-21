@@ -13,7 +13,7 @@ import java.util.Set;
 public class Cliente {
 
     @Id
-    @GeneratedValue(generator = "public.tblcliente_id_seq")
+    @GeneratedValue(generator = "public.tblpersonas_lpersona_id_seq")
     private int lpersona_id;
 
     @Column(name = "spersona_nm")
