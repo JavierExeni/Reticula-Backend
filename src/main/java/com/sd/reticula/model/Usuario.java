@@ -9,13 +9,13 @@ import java.util.Set;
 
 @Data
 @Entity
-@Table(name="usuario", schema = "reticula")
+@Table(name="usuarios", schema = "reticula")
 public class Usuario {
 
     @Id
     @GeneratedValue(generator = "reticula.usuario_id_seq")
-    private int id;
-    private String correo;
+    private int codigo_id;
+    private String scorreo;
     private String nombre;
     private String username;
     private String spassword;
@@ -41,8 +41,8 @@ public class Usuario {
     @Override
     public String toString() {
         return "Usuario{" +
-                "id=" + id +
-                ", correo='" + correo + '\'' +
+                "id=" + codigo_id +
+                ", correo='" + scorreo + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + spassword + '\'' +

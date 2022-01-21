@@ -14,7 +14,7 @@ public class Carpeta {
 
     @Id
     @GeneratedValue(generator = "reticula.carpetas_codigo_id_seq")
-    private int id;
+    private int codigo_id;
     private String nombre;
 
     @OneToOne

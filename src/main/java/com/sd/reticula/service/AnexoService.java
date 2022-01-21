@@ -39,7 +39,7 @@ public class AnexoService {
 
     public List<Anexo> getByClientId(int clienteId){
         List<Anexo> annexedList = annexedRepository.findAll();
-        return annexedList.stream().filter(annexed -> annexed.getTarea().getCliente().getId() == clienteId)
+        return annexedList.stream().filter(annexed -> annexed.getTarea().getCliente().getLpersona_id() == clienteId)
                 .collect(Collectors.toList());
     }
 

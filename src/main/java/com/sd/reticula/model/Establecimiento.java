@@ -11,7 +11,7 @@ public class Establecimiento {
 
     @Id
     @GeneratedValue(generator = "reticula.establecimientos_codigo_id_seq")
-    private int id;
+    private int codigo_id;
     private String direccion;
     private String telefono;
     private String longitud;

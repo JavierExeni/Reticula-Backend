@@ -1,7 +1,6 @@
 package com.sd.reticula.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.sun.istack.NotNull;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -10,23 +9,23 @@ import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "cliente", schema = "public")
+@Table(name = "tblpfisicas", schema = "public")
 public class Cliente {
 
     @Id
     @GeneratedValue(generator = "public.tblcliente_id_seq")
-    private int id;
+    private int lpersona_id;
 
-    @Column(name = "nombre")
+    @Column(name = "spersona_nm")
     private String nombre;
 
     @OneToMany(mappedBy = "cliente")
     @JsonIgnore
     private Set<Tarea> listaTarea;
 
-    @OneToMany(mappedBy = "cliente")
-    @JsonIgnore
-    private Set<TrabajoTaller> listaTrabajoTaller;
+//    @OneToMany(mappedBy = "cliente")
+//    @JsonIgnore
+//    private Set<TrabajoTaller> listaTrabajoTaller;
 
     @OneToMany(mappedBy = "cliente")
     @JsonIgnore
@@ -50,16 +49,16 @@ public class Cliente {
         listaTarea.add(tarea);
     }
 
-    public void addTrabajoTaller(TrabajoTaller trabajoTaller){
-        if(listaTrabajoTaller == null){
-            listaTrabajoTaller = new HashSet<>();
-        }
-        listaTrabajoTaller.add(trabajoTaller);
-    }
+//    public void addTrabajoTaller(TrabajoTaller trabajoTaller){
+//        if(listaTrabajoTaller == null){
+//            listaTrabajoTaller = new HashSet<>();
+//        }
+//        listaTrabajoTaller.add(trabajoTaller);
+//    }
 
     @Override
     public String toString() {
-        return "Cliente{id=" + id + ", nombre='" + nombre +'}';
+        return "Cliente{id=" + lpersona_id + ", nombre='" + getNombre() +'}';
     }
 
 }

@@ -182,10 +182,10 @@ public class TrabajoTallerController {
         try {
             TrabajoTaller objTrabajo = trabajoTallerService.getById(tallerId);
             if (objTrabajo != null) {
-                path = path + "/" + objTrabajo.getCliente().getId();
+                path = path + "/" + objTrabajo.getCliente().getLpersona_id();
                 createFolder(path);
 
-                String relativePath = FILE_DIRECTORY + "/taller/" + objTrabajo.getCliente().getId() + "/" + file.getOriginalFilename();
+                String relativePath = FILE_DIRECTORY + "/taller/" + objTrabajo.getCliente().getLpersona_id() + "/" + file.getOriginalFilename();
                 String pathCompleto = new File(".").getAbsolutePath();
                 String ultimatePath = pathCompleto.substring(0, pathCompleto.length()-1) + relativePath;
 

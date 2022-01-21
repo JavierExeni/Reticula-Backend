@@ -158,7 +158,7 @@ public class TrabajoTallerService {
     @Transactional
     public TrabajoTaller saveTrabajoTaller(TrabajoTaller obj) {
         if (validateWork(obj)) {
-            if (obj.getId() == 0) {
+            if (obj.getCodigo_id() == 0) {
                 obj.setFecha(Calendar.getInstance().getTime());
             } else {
                 obj.setDtproceso(Calendar.getInstance().getTime());

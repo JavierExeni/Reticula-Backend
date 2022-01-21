@@ -73,7 +73,7 @@ public class UsuarioController {
         }
 
         try {
-            int userId = userVerified.get().getId();
+            int userId = userVerified.get().getCodigo_id();
             Optional<Usuario> optionalUser = usuarioService.getUserById(userId);
             Usuario user = optionalUser.get();
             obje.put("res", "success");

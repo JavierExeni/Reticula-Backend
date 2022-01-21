@@ -117,11 +117,11 @@ public class TareasService {
         type = type.toLowerCase();
         switch (type) {
             case "asistencia":
-                return this.ASISTENCIA;
+                return this.ASISTENCIA; //0
             case "mantenimiento":
-                return this.MANTENIMIENTO;
+                return this.MANTENIMIENTO; //1
             case "tarea":
-                return this.TAREA;
+                return this.TAREA; //2
             default:
                 return 0;
         }
@@ -170,7 +170,7 @@ public class TareasService {
         Cliente objAux = null;
         List<Cliente> listaClientes = clienteRepository.findAll();
         for (Cliente obj : listaClientes) {
-            if (obj.getId() == cliente_id) {
+            if (obj.getLpersona_id() == cliente_id) {
                 objAux = obj;
                 break;
             }
@@ -184,7 +184,7 @@ public class TareasService {
         Cliente objAux = null;
         List<Cliente> listaClientes = clienteRepository.findAll();
         for (Cliente obj : listaClientes) {
-            if (obj.getId() == cliente_id) {
+            if (obj.getLpersona_id() == cliente_id) {
                 objAux = obj;
                 break;
             }

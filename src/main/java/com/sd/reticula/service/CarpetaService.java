@@ -54,7 +54,7 @@ public class CarpetaService {
         if (!carpeta.getNombre().equals("") && carpeta.getCliente() != null) {
             List<Carpeta> folderList = getAll();
             List<Carpeta> listaFiltrada = folderList.stream().filter(
-                    folder -> folder.getCliente().getId() == carpeta.getCliente().getId()).collect(Collectors.toList()
+                    folder -> folder.getCliente().getLpersona_id() == carpeta.getCliente().getLpersona_id()).collect(Collectors.toList()
             );
             if (listaFiltrada.isEmpty()) {
                 return true;

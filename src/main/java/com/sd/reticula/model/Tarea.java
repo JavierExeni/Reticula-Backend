@@ -10,13 +10,13 @@ import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "tarea", schema = "reticula")
+@Table(name = "tareas", schema = "reticula")
 
 public class Tarea {
 
     @Id
     @GeneratedValue(generator = "reticula.tarea_id_seq")
-    @Column(name = "id")
+    @Column(name = "codigo_id")
     private int id;
     private String nombre;
     private String descripcion;
@@ -31,7 +31,7 @@ public class Tarea {
     private Usuario usuario;
 
     @ManyToOne
-    @JoinColumn(name = "cliente_id")
+    @JoinColumn(name = "pfisicas_id")
     private Cliente cliente;
 
 //    @ManyToMany(mappedBy = "tarea")

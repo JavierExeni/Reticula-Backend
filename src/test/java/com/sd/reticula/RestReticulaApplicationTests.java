@@ -45,7 +45,7 @@ class RestReticulaApplicationTests {
 	@Test
 	void getTallerByCliente(){
 		List<Cliente> listaClientes = clienteRepository.findAll();
-		List<TrabajoTaller> lista = trabajoTallerService.getAllByCliente(listaClientes.get(0).getId());
+		List<TrabajoTaller> lista = trabajoTallerService.getAllByCliente(listaClientes.get(0).getLpersona_id());
 		for (TrabajoTaller obj :
 				lista) {
 			System.out.println(obj.toString());

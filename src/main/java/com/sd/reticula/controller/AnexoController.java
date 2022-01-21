@@ -82,10 +82,10 @@ public class AnexoController {
         path = path + "/anexo";
         createFolder(path);
 
-        path = path + "/" + objAnnexed.getCarpeta().getId();
+        path = path + "/" + objAnnexed.getCarpeta().getCodigo_id();
         createFolder(path);
         try {
-            String relativePath = FILE_DIRECTORY + "/anexo/" + objAnnexed.getCarpeta().getId() + "/" + file.getOriginalFilename();
+            String relativePath = FILE_DIRECTORY + "/anexo/" + objAnnexed.getCarpeta().getCodigo_id() + "/" + file.getOriginalFilename();
             String pathCompleto = new File(".").getAbsolutePath();
             String ultimatePath = pathCompleto.substring(0, pathCompleto.length()-1) + relativePath;
 

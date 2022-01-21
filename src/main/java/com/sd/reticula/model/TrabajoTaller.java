@@ -1,6 +1,5 @@
 package com.sd.reticula.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -13,7 +12,7 @@ public class TrabajoTaller {
 
     @Id
     @GeneratedValue(generator = "tesseract.tbltrabajos_codigo_id_seq")
-    private int id;
+    private int codigo_id;
     private String referencia;
     private String equipo;
     private String problema;
@@ -41,7 +40,7 @@ public class TrabajoTaller {
     @Override
     public String toString() {
         return "TrabajoTaller{" +
-                "codigo_id=" + id +
+                "codigo_id=" + codigo_id +
                 ", referencia='" + referencia + '\'' +
                 ", equipo='" + equipo + '\'' +
                 ", problema='" + problema + '\'' +
