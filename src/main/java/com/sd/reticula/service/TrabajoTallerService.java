@@ -141,7 +141,7 @@ public class TrabajoTallerService {
     private boolean validateStateWork(String state) {
         if (state.toLowerCase().equals("pendiente") || state.toLowerCase().equals("analisis") ||
                 state.toLowerCase().equals("finalizado") || state.toLowerCase().equals("entregado") ||
-                state.toLowerCase().equals("retrasado")) {
+                state.toLowerCase().equals("retrasado") || state.toLowerCase().equals("todos")) {
             return true;
         }
         return false;
